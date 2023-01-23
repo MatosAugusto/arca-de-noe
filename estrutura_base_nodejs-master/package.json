@@ -5,7 +5,7 @@
     "license": "MIT",
     "scripts": {
         "dev": "ts-node-dev src/server.ts",
-        "start": "nodemon ./src/server.ts localhost:3000"
+        "start": "nodemon ./src/server.ts localhost:3001"
     },
     "devDependencies": {
         "@types/cors": "^2.8.13",
