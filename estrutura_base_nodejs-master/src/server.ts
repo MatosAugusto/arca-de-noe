@@ -16,18 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
 
-const run = async () => {
-    const dogs   = {
-        name: "caramelo",
-        breed: "Pastor alemão",
-        description:  "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Odio nobis repudiandae harum facere unde porro.",
-        url_image: "https://i0.wp.com/www.portaldodog.com.br/cachorros/wp-content/uploads/2015/04/como-identificar-cachorro-dor-saude.jpg?ssl=1",
-        phone: 85988289320,
-    };
-    await Dog.create(dogs);
-};
 
-run();
 
 app.get("/dogs", async (req, res) => {
     try {
@@ -53,7 +42,7 @@ mongoose
     )
     .then(() => {
         console.log("Connected with mongoDB!");
-        app.listen(3001, () => {
+        app.listen(3000, () => {
             console.log("Server is running...");
         });
     })
