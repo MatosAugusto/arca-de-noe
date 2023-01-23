@@ -5,8 +5,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
   </head>
   <body>
+
+    <div class="header">
+      <img id="main-icon" src="logo.png" title="Arca de Noé">
+    </div>
+
     <ul id="bodyinfo"></ul>
 
+    <a href="home.html"><button >Voltar</button></a>
+    
     <script>
       async function renderInfo() {
         fetch("http://localhost:3000/dogs")
