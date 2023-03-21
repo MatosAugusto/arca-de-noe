@@ -10,7 +10,7 @@ export function Button({label, color, link, action}) {
         throw 'Button must have either blue or green color';
     }
 
-    const buttonClasses = buttonColorClasses + ' p-3 rounded-2xl text-center';
+    const buttonClasses = buttonColorClasses + ' p-3 rounded-2xl';
 
     if(typeof(action) === 'string') {
         action = () => {}

@@ -1,14 +1,22 @@
 import { Button } from "../components/Button";
-import './Home.css';
+import {GoChecklist} from "react-icons/go";
+import {GiSittingDog} from "react-icons/gi";
+import {FcApproval} from "react-icons/fc";
+import {MdPets} from "react-icons/md";
+import { IconContext } from "react-icons";
+import "./Home.css";
 
 function Home() {
     return (
         <div class="grid-container">
             <div class="header">
-//                <img id="main-icon" src="logo.png" title="Arca de Noé"/>
-                
-                <a href="login"><button class="menu">Login</button></a>
-                <a href="listaPets"><button class="menu">Quero Adotar um Pet</button></a> 
+                <IconContext.Provider value={{className: "main-icon" }}>
+                    <div>
+                        <MdPets />
+                    </div>
+                </IconContext.Provider>
+                <Button label="Login" link="/login" color='blue' className="menu"/>
+                <Button label="Quero Adotar um Pet" link="/listaPets" color='blue' className="menu" />
             </div>
 
             <div class="top">
@@ -22,15 +30,27 @@ function Home() {
             </div>
             
             <div class="left central">
-                <img class="icon" src="formulario.png" /><br/>
+                <IconContext.Provider value={{className: "icon" }}>
+                    <div>
+                        <GoChecklist />
+                    </div>
+                </IconContext.Provider>
                 <bdo> Faça cadastro no nosso site e preencha as informações de perfil.</bdo>
             </div>
             <div class="middle central">
-                <img class="icon" src="lista.png" /><br/>
+                <IconContext.Provider value={{className: "icon" }}>
+                    <div>
+                        <GiSittingDog />
+                    </div>
+                </IconContext.Provider>
                 <bdo>Confira nossa lista de pets disponíveis e escolha aquele que mais combina com você.</bdo>
             </div>  
             <div class="right central">
-                <img class="icon" src="aprovado2.png"  /><br/>
+                <IconContext.Provider value={{style:{color: "black"}, className: "icon" }}>
+                    <div>
+                        <FcApproval />
+                    </div>
+                </IconContext.Provider>
                 <bdo>Assim que seu interesse for aprovado entramos em contato para combinar dia/hora/local para você buscar seu pet!</bdo>
             </div>
 

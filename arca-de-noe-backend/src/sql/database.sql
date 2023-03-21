@@ -1,4 +1,4 @@
-DROP DATABASE arca_de_noe;
+DROP DATABASE IF EXIST arca_de_noe;
 
 CREATE DATABASE arca_de_noe;
 
