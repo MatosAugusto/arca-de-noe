@@ -23,5 +23,6 @@ CREATE TABLE dog
     description VARCHAR(256) NOT NULL,
     url_image VARCHAR(256) NOT NULL,
     phone VARCHAR(24) NOT NULL,
+    adopeted VARCHAR(1) NOT NULL DEFAULT 'N',
     PRIMARY KEY(id)
 );

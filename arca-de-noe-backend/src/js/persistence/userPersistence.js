@@ -15,10 +15,15 @@ const SELECT_USER_BY_ID =
             FROM user
             WHERE id=UUID_TO_BIN(?)`;
 
-const SELECT_USER_BY_EMAIL =
+const SELECT_USER_BY_USERNAME =
     `SELECT BIN_TO_UUID(id) as id,name,email,username,adress
             FROM user
-            WHERE email=?`;
+            WHERE username=?`;
+
+const SELECT_USER_BY_USERNAME_AND_PASSWORD =
+    `SELECT BIN_TO_UUID(id) as id,name,email,username,adress
+            FROM user
+            WHERE username=? AND password=?`;
 
 export async function retrieveUserById(id) {
     try {
@@ -31,16 +36,18 @@ export async function retrieveUserById(id) {
     }
 }
 
-export async function retrieveUserByEmail(email) {
+
+export async function retrieveUserByUsernameAndPassword(username,password) {
     try {
-        const [rows] = await getPool().execute(SELECT_USER_BY_EMAIL, [email]);
+        const [rows] = await getPool().execute(SELECT_USER_BY_USERNAME_AND_PASSWORD, [username,password]);
         return rows[0];
     } catch (err) {
         throw new CustomError(CustomErrorType.DatabaseError,
-            'Error retrieving user by email: ' + email,
+            'Error retrieving user by username: ' + username + 'password:'  + password,
             err);
     }
 }
+
 
 export async function createUser(user) {
     if (await retrieveUserByEmail(user.email)) {

@@ -13,6 +13,7 @@ function Login() {
     const [adress, setAdress] = useState('');
     const [password, setPassword] = useState('');
     const [invalidEmail, setInvalidEmail] = useState(false);
+    const [invalidPassword, setInvalidPassword] = useState(false);
     const [searchConcluded, setSearchConcluded] = useState(false);
     const [message, setMessage] = useState('');
     const [existingGambler, setExistingGambler] = useState(null);
@@ -23,22 +24,27 @@ function Login() {
         setPassword('');
     }
 
-    async function retrieveUserByEmail() {
-        if (email.trim().length === 0) {
-            setInvalidEmail(true);
+    async function retrieveUserByUsernameAndPassword() {
+        if (username.trim().length === 0 || password.trim().length === 0) {
+            setInvalidPassword(true);
             setSearchConcluded(true);
             return;
         } else {
-            setInvalidEmail(false);
+            setInvalidPassword(false);
             setSearchConcluded(true);
             try {
-                const getUserResponse = await fetch('http://localhost:5000/user?email=' + email);
-                if (getUserResponse.status === 200) {
+                const getUserResponseUsername = await fetch('http://localhost:5000/user?username=' + username + '&password=' + password);
+                if (getUserResponseUsername.status === 200) {
                     /* Encaminhar para págima home */
                     window.location.href = "http://localhost:3000/";
+                } else if(getUserResponseUsername.status === 404){
+                    window.location.href="https://http.dog/404.jpg";
+                } else if(getUserResponseUsername.status === 500){
+                    window.location.href="https://http.dog/500.jpg";
                 }
             }
             catch (err) {
+                
                 console.log('Error: ' + err);
             }
         }
@@ -55,14 +61,14 @@ function Login() {
             </div>
             <div class="container">
                 
-                <FormInput id='username' label='Nome de Usuário' value={email} type='text' size='full' onChange={e => setEmail(e.target.value )} />
+                <FormInput id='username' label='Nome de Usuário' value={username} type='text' size='full' onChange={e => setUsername(e.target.value )} />
                 <FormInput id='password' label='Senha' value={password} type='password' size='full' onChange={e => setPassword(e.target.value )} />
                 
 
                 <div className="m-4"></div>
 
                 <div className="flex flex-col items-center">
-                    <Button label="Login" action={retrieveUserByEmail} color='blue' className="menu" />
+                    <Button label="Login" action={retrieveUserByUsernameAndPassword} color='blue' className="menu" />
                     <Button label="Cadastre-se" link="/cadastro" color='blue' className="menu" />
                 </div>
 

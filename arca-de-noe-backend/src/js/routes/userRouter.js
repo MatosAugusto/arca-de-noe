@@ -1,5 +1,5 @@
 import express from 'express';
-import { createUser, updateUser, retrieveUserByEmail } from '../persistence/userPersistence.js';
+import { createUser, updateUser, retrieveUserByUsernameAndPassword } from '../persistence/userPersistence.js';
 
 const router = express.Router();
 
@@ -22,19 +22,22 @@ router.put('/', async (req, res) => {
     }
 });
 
-// Retrieve a user by e-mail (provided via query param)
+
+// Retrieve a user by username and password (provided via query param)
 router.get('/', async (req, res) => {
     try {
-        const user = await retrieveUserByEmail(req.query.email);
+        const user = await retrieveUserByUsernameAndPassword(req.query.username, req.query.password);
         if (user) {
             return res.json(user);
         } else {
             res.status(404).send('User does not exist');
+            
         }
     } catch (err) {
         console.log(err);
         res.status(500).send('Error retrieving user');
     }
 })
+
 
 export default router;
