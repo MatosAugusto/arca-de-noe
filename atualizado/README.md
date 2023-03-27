@@ -1,4 +1,4 @@
-# DSw2 - Projeto de discplina
+# DSW2 - Projeto de discplina
 
 Site para adoção de pets chamado Arca de Noé, implementação de 4 telas: home, login, cadastro de usuário, e tela com a listagem dos pets para adoção.
 <br/><br/>
