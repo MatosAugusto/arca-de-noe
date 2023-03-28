@@ -50,9 +50,9 @@ export async function retrieveUserByUsernameAndPassword(username,password) {
 
 
 export async function createUser(user) {
-    if (await retrieveUserByEmail(user.email)) {
+    if (await retrieveUserByUsernameAndPassword(user.username,user.password)) {
         throw new CustomError(CustomErrorType.DatabaseError,
-            'User email already exists: ' + user.email,
+            'User already exists: ' + user.username,
             null);
     }
     try {

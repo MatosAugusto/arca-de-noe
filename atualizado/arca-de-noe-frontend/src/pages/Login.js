@@ -8,30 +8,13 @@ import "./Login.css";
 
 function Login() {
     const [username, setUsername] = useState('');
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [adress, setAdress] = useState('');
     const [password, setPassword] = useState('');
-    const [invalidEmail, setInvalidEmail] = useState(false);
-    const [invalidPassword, setInvalidPassword] = useState(false);
-    const [searchConcluded, setSearchConcluded] = useState(false);
-    const [message, setMessage] = useState('');
-    const [existingGambler, setExistingGambler] = useState(null);
-    const [existingBet, setExistingBet] = useState(null);
-
-    function resetForm() {
-        setUsername('');
-        setPassword('');
-    }
 
     async function retrieveUserByUsernameAndPassword() {
         if (username.trim().length === 0 || password.trim().length === 0) {
-            setInvalidPassword(true);
-            setSearchConcluded(true);
+            window.location.href="https://http.dog/404.jpg";
             return;
         } else {
-            setInvalidPassword(false);
-            setSearchConcluded(true);
             try {
                 const getUserResponseUsername = await fetch('http://localhost:5000/user?username=' + username + '&password=' + password);
                 if (getUserResponseUsername.status === 200) {

@@ -14,7 +14,7 @@ function App() {
                     <Route index element={<Home />} />
                     <Route path="cadastro" element={<Cadastro />} />
                     <Route path="login" element={<Login />} />
-                    <Route path="listaPets" element={<ListaPets />} />
+                    <Route path="dogs" element={<ListaPets />} />
                 </Route>
             </Routes>
         </BrowserRouter>
